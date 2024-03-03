@@ -1,0 +1,273 @@
+.body {
+  background-color: white;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color:transparent;
+  transition: background-color 0.3s;
+}
+
+.hide {
+  transform: translateY(-100%);
+}
+
+/* Navbar logo styles */
+.navbarLogo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+}
+
+/* Navbar buttons styles */
+.navbarButtons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Login button styles */
+.navButton.login {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover styles for login button */
+.navButton.login:hover {
+  background-color: white;
+  color: rgb(221, 120, 120);
+}
+
+/* Sign up button styles */
+.navButton.signup {
+  color:white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* Hover styles for sign up text */
+.navButton.signup:hover {
+  color: red; /* Change color to red on hover */
+}
+
+
+
+.bigText {
+  position: absolute;
+  top: 60%;
+  left: 15%; /* Adjust left positioning */
+  transform: translateY(-50%);
+  text-align: left; /* Align text to the left */
+  color: #fff;
+  max-width: 40%; /* Limit width to prevent text from spanning across the entire page */
+}
+
+.bigText h1 {
+  font-size: 3.07rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  
+}
+
+.bigText p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.learnMoreButton {
+  background-color: #fff;
+  color: #b95a5a;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 1.51rem;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: bold; /* Make the text bold */
+
+}
+
+.learnMoreButton:hover {
+  background-color: transparent; /* Change background to transparent on hover */
+  color: #fff;
+  border-radius: 50px; /* Add border radius on hover */
+}
+/* styles/styles.module.css */
+
+.additionalText {
+  display: flex;
+  margin-top: 20px;
+}
+
+.transparentText {
+  padding: 5px 10px;
+  border: 1px solid transparent; /* Remove border */
+  border-radius: 30px;
+  font-size: 50 px; /* Decrease font size */
+  background-color: rgba(255, 255, 255, 0.281); /* Transparent white background */
+  color: rgba(255, 255, 255, 0.76); /* Transparent white text */
+  
+}
+/* styles/styles.module.css */
+
+.additionalInfo {
+  background-color: #fff; /* White background for the additional info container */
+  padding: 50px; /* Add padding to the additional info container */
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.bigText1 {
+  font-size: 2.6rem;
+  text-align: center ;
+  color: black;
+  margin-top: 100px;;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoItem {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.infoItem strong {
+  display: block;
+  font-size: 4rem;
+  color: rgb(160, 100, 230);
+}
+
+.infoItem p {
+  font-size: 1rem;
+  margin-top: 5px;
+  color: rgb(121, 27, 230);
+}
+
+.lastSection {
+  margin-top: 150px;
+  padding: 50px;
+  background: linear-gradient(180deg,rgb(243, 55, 86), #d34e10); /* Pink to orange gradient from top to bottom */
+  text-align: center;
+}
+
+.bigText2 {
+  font-size: 2.5rem;
+  color: #fff; /* White text color */
+  margin-bottom: 20px;
+}
+
+.smallText {
+  font-size: 1.5rem;
+  color: #fff; /* White text color */
+  margin-bottom: 40px;
+}
+
+.getStartedButton {
+  background-color: #fff; /* White button background */
+  color: #FF6B6B; /* Pink text color */
+  padding: 15px 30px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.getStartedButton:hover {
+  background-color: #FF6B6B; /* Pink background on hover */
+  color: #fff; /* White text color on hover */
+}
+/* styles/Footer.module.css */
+
+.footer {
+  background-color: #ffffff; /* Dark background color */
+  color: #000000; /* White text color */
+  padding: 40px ;
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-between; /* Align items horizontally */
+  align-items: center; /* Align items vertically */
+  
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+
+}
+
+.logo {
+  margin-right: 10px;
+  transform: translate(10%,0%);
+}
+
+.name {
+  font-size: 20px;
+}
+
+.footerLinks {
+  display: flex;
+}
+
+.footerColumn {
+  margin-right: 30px;
+
+}
+
+.footerColumn h3 {
+  margin-bottom: 20px;
+  font-weight: bold; /* Make the first item bold */
+}
+
+.footerColumn ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerColumn ul li {
+  margin-bottom: 10px;
+}
+
+.footerColumn ul li a {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s;
+  
+}
+
+.footerColumn ul li a:hover {
+  color: #FF6B6B; /* Hover color */
+}
+
+.socialIcons {
+  display: flex;
+  align-items: center;
+}
+
+.socialIcons a {
+  color: #000000;
+  font-size: 35px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.socialIcons a:hover {
+  color: #FF6B6B; /* Hover color */
+}
