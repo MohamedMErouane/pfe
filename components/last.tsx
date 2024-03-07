@@ -8,7 +8,7 @@ const Last = () => {
     <div className={styles.lastSection}>
       <h2 className={styles.bigText2}>What are you waiting for?</h2>
       <p className={styles.smallText}>Join the study team!</p>
-      <Link href="/login" passHref>
+      <Link href="/Login" passHref>
         <button className={styles.getStartedButton}>Get Started</button>
       </Link>
     </div>

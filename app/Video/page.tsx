@@ -1,91 +1,104 @@
 "use client"
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import Peer, { MediaConnection } from 'peerjs';
 import io from 'socket.io-client';
-import Peer from 'peerjs';
-import { v4 as uuidv4 } from 'uuid';
 
-const VideoCallPage: React.FC = () => {
+const VideoChat = () => {
+  const videoGridRef = useRef<HTMLDivElement>(null);
+  const myPeer = useRef<Peer | null>(null);
+  const myVideoRef = useRef<HTMLVideoElement>(null);
+  const peers = useRef<{ [key: string]: MediaConnection }>({});
   const [roomId, setRoomId] = useState<string>('');
 
   useEffect(() => {
-    // Generate or retrieve the room ID
-    const roomIdFromQuery = new URLSearchParams(window.location.search).get('roomId');
-    if (roomIdFromQuery) {
-      setRoomId(roomIdFromQuery);
-    } else {
-      const newRoomId = uuidv4();
-      setRoomId(newRoomId);
-      // Update the URL with the generated room ID
-      window.history.replaceState({}, '', `?roomId=${newRoomId}`);
-    }
-
-    // Initialize socket connection
     const socket = io('/');
-    const myPeer = new Peer();
+    const videoGrid = videoGridRef.current;
 
-    // Flag to track whether own video stream has been added
-    let ownStreamAdded = false;
+    // Fetch room ID from server
+    const fetchRoomId = async () => {
+      const response = await fetch('/api/stream', { method: 'POST' });
+      const { roomId } = await response.json();
+      setRoomId(roomId);
+    };
 
-    // Get user's media stream
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
-      const localVideo = document.createElement('video');
-      localVideo.srcObject = stream;
-      localVideo.autoplay = true;
-      localVideo.muted = true;
-      document.getElementById('video-grid')?.appendChild(localVideo);
+    fetchRoomId();
 
-      // Join the room
-      myPeer.on('open', (userId) => {
-        socket.emit('join-room', roomId, userId);
+    myPeer.current = new Peer();
+
+    navigator.mediaDevices.getUserMedia({
+      video: true,
+      audio: true
+    }).then(stream => {
+      addVideoStream(myVideoRef.current!, stream);
+
+      // When a new user connects, call them and send your stream
+      myPeer.current!.on('call', (call: MediaConnection) => {
+        call.answer(stream);
+        const video = document.createElement('video');
+        call.on('stream', (userVideoStream: MediaStream) => {
+          addVideoStream(video, userVideoStream);
+        });
+        call.on('close', () => {
+          video.remove();
+        });
       });
 
       // When a new user joins, call them and send your stream
-      socket.on('user-connected', (userId) => {
-        setTimeout(() => {
-          if (!ownStreamAdded) {
-            ownStreamAdded = true; // Set flag to true
-            return;
-          }
-          const call = myPeer.call(userId, stream);
+      socket.on('user-connected', (userId: string) => {
+        setTimeout(() => { // Timeout to ensure myVideo is added before calling
+          const call = myPeer.current!.call(userId, stream);
           const video = document.createElement('video');
-          call.on('stream', (userVideoStream) => {
+          call.on('stream', (userVideoStream: MediaStream) => {
             addVideoStream(video, userVideoStream);
           });
           call.on('close', () => {
             video.remove();
           });
+          peers.current[userId] = call;
         }, 1000);
       });
 
-      // When a user disconnects, remove their video stream
-      socket.on('user-disconnected', (userId) => {
-        const videoElement = document.getElementById(`video-${userId}`);
-        if (videoElement) {
-          videoElement.remove();
-        }
-      });
+    });
+
+    // When a user disconnects, remove their video stream
+    socket.on('user-disconnected', (userId: string) => {
+      if (peers.current[userId]) {
+        peers.current[userId].close();
+        delete peers.current[userId];
+      }
+    });
+
+    // When Peer connection is established, join the room
+    myPeer.current!.on('open', id => {
+      socket.emit('join-room', roomId, id);
     });
 
     // Function to add video stream to the grid
-    const addVideoStream = (video: HTMLVideoElement, stream: MediaStream) => {
+    function addVideoStream(video: HTMLVideoElement, stream: MediaStream) {
       video.srcObject = stream;
-      video.autoplay = true;
-      video.muted = false; // Ensure new participants' streams are not muted
-      video.id = `video-${myPeer.id}`; // Set a unique id for each video element
-      document.getElementById('video-grid')?.appendChild(video);
-    };
+      video.addEventListener('loadedmetadata', () => {
+        video.play();
+      });
+      videoGrid!.append(video);
+    }
 
     return () => {
       socket.disconnect();
-      myPeer.disconnect();
     };
-  }, [roomId]);
+  }, []);
 
   return (
-    <div className="container">
-      <div className="video-grid" id="video-grid"></div>
+    <div>
+      <div ref={videoGridRef}></div>
+      <video ref={myVideoRef} muted></video>
+      {roomId && (
+        <div>
+          <p>Share this link with others to join the room:</p>
+          <input type="text" value={`${window.location.origin}/room/${roomId}`} readOnly />
+        </div>
+      )}
     </div>
   );
 };
 
-export default VideoCallPage;
+export default VideoChat;

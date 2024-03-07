@@ -66,7 +66,10 @@ export default function Home() {
         </Link>
         <div className={styles.additionalText}>
           <p className={styles.transparentText}>100% Free!</p>
-          <p className={styles.transparentText}>500 Online</p>
+           <div className={styles.cercle}></div>
+          <p className={styles.transparentText}>
+          
+          500 Online</p>
         </div>    </div>
 
 
@@ -75,6 +78,7 @@ export default function Home() {
     <AdditionalInfo />
     <Last />
     <Footer />
+    
     </>
   );
 }
