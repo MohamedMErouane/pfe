@@ -7,7 +7,7 @@ const Home = () => {
       <div className="w-1/4">
         <SideBar />
       </div>
-      <div className="w-3/4 p-4">
+      <div className=" w-3/4 p-4">
         <TodoList />
       </div>
     </div>

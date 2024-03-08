@@ -7,10 +7,14 @@ const TodoList = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
   const [username, setUsername] = useState('');
+  const [currentDate, setCurrentDate] = useState('');
 
   useEffect(() => {
     fetchTasks();
     fetchUsername();
+    updateCurrentDate(); // Initial call to update current date
+    const interval = setInterval(updateCurrentDate, 86400000); // Update date every day (86400000 milliseconds = 1 day)
+    return () => clearInterval(interval); // Cleanup interval on component unmount
   }, []);
 
   const fetchTasks = async () => {
@@ -65,10 +69,18 @@ const TodoList = () => {
     }
   };
 
+  const updateCurrentDate = () => {
+    const now = new Date();
+    const options = { weekday: 'short', day: 'numeric', month: 'short' };
+    const formattedDate = now.toLocaleDateString('en-US', options);
+    setCurrentDate(formattedDate);
+  };
+
   return (
     <div className="container mx-auto p-4 bg-gray-100 rounded-md shadow-md">
       <p className="text-lg text-black">Hi @{username} , set yourself up for success! 🚀</p>
-      <h1 className="text-2xl font-bold my-4 text-black">What do you want to achieve?</h1>
+      <h1 className="text-2xl font-normal my-4 text-black">What do you want to achieve?</h1>
+      <p className="text-sm text-black text-right mb-4 ">☀️{currentDate} </p>
       <form onSubmit={addTask} className="mb-4 flex">
         <input
           type="text"
