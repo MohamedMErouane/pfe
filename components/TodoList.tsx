@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaTrash } from 'react-icons/fa'; // Import the trash icon from react-icons/fa
 
 const TodoList = () => {
   const [tasks, setTasks] = useState([]);
@@ -9,6 +10,7 @@ const TodoList = () => {
 
   useEffect(() => {
     fetchTasks();
+    fetchUsername();
   }, []);
 
   const fetchTasks = async () => {
@@ -19,6 +21,7 @@ const TodoList = () => {
       console.error('Error fetching tasks:', error);
     }
   };
+
   const fetchUsername = async () => {
     try {
       const response = await axios.get('/api/user');
@@ -39,7 +42,7 @@ const TodoList = () => {
     }
   };
 
-  const deleteTask = async (taskId: string) => {
+  const deleteTask = async (taskId) => {
     try {
       await axios.delete(`/api/tasks/${taskId}`);
       fetchTasks();
@@ -48,7 +51,7 @@ const TodoList = () => {
     }
   };
 
-  const toggleTaskCompletion = async (taskId: string, completed: Boolean) => {
+  const toggleTaskCompletion = async (taskId, completed) => {
     try {
       await axios.put(`/api/tasks/${taskId}`, { completed: !completed });
       fetchTasks();
@@ -67,12 +70,12 @@ const TodoList = () => {
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
           placeholder="Enter task..."
-          className="p-2 mr-2 border rounded-md flex-grow text-black"
+          className="p-2 mr-2 border rounded-md flex-grow text-black" // Changed text color to black
         />
         <button type="submit" className="px-4 py-2 bg-black text-white rounded-md">Add Task</button>
       </form>
       <ul className="todo-list">
-        {tasks.map(task => (
+        {tasks.map((task) => (
           <li key={task.id} className={`todo-item ${task.completed ? 'line-through' : ''}`}>
             <input
               type="checkbox"
@@ -81,7 +84,12 @@ const TodoList = () => {
               className="mr-2"
             />
             <span>{task.description}</span>
-            <button onClick={() => deleteTask(task.id)} className="ml-auto">Delete</button>
+            <button
+              onClick={() => deleteTask(task.id)}
+              className="ml-auto text-red-500" // Added text color as red
+            >
+              <FaTrash /> {/* Render the delete icon */}
+            </button>
           </li>
         ))}
       </ul>
