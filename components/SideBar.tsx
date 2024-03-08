@@ -26,10 +26,10 @@ const SideBar = () => {
               </Disclosure.Button>
             </div>
             <Disclosure.Panel className={`flex flex-col ${isOpen ? 'block' : 'hidden'}`}>
-              <NavItem icon={<MdDashboard />} label="Dashboard" href="/dashboard" />
+              <NavItem icon={<MdDashboard />} label="Dashboard" href="/Home" />
               <NavItem icon={<MdAnalytics />} label="Profile" href="/Profile" />
-              <NavItem icon={<FaComments />} label="Comments" href="/comments" />
-              <NavItem icon={<BiMessageSquareDots />} label="Messages" href="/messages" />
+              <NavItem icon={<FaComments />} label="Chat Rooms" href="/Chat" />
+              <NavItem icon={<BiMessageSquareDots />} label="Study Goals" href="/Todo" />
               <NavItem icon={<MdSettings />} label="Settings" href="/settings" />
               <NavItem icon={<MdExitToApp />} label="Logout" />
             </Disclosure.Panel>
