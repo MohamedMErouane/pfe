@@ -34,8 +34,13 @@ const TodoList = () => {
   const addTask = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/tasks', { description: newTask });
-      fetchTasks();
+      // Send the new task to the backend
+      const response = await axios.post('/api/tasks', { description: newTask });
+
+      // Update the local state with the newly added task received from the backend
+      setTasks([...tasks, response.data]);
+      
+      // Clear the input field
       setNewTask('');
     } catch (error) {
       console.error('Error adding task:', error);
