@@ -1,3 +1,5 @@
+"use client"
+import PomodoroApp from "@/components/Pomodoro";
 import SideBar from "@/components/SideBar";
 import TodoList from "@/components/TodoList";
 
@@ -9,6 +11,7 @@ const Home = () => {
       </div>
       <div className=" w-3/4 p-4">
         <TodoList />
+        <PomodoroApp/>
       </div>
     </div>
   );
