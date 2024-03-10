@@ -50,7 +50,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <p ><strong>Follow Us :</strong></p>
+        <p className={styles.titleA}>Follow Us :</p>
         <div className={styles.socialIcons}>
             
           <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>

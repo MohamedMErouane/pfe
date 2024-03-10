@@ -24,9 +24,12 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
+    "react-particles-js": "^3.6.0",
     "simple-peer": "^9.11.1",
     "socket.io": "^4.7.4",
     "socket.io-client": "^4.7.4",
+    "tsparticles": "^1.43.1",
+    "twind": "^0.16.19",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

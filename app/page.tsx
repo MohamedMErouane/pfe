@@ -7,6 +7,9 @@ import Link from 'next/link';
 import AdditionalInfo from '@/components/AdditionalInfo';
 import Last from '@/components/last';
 import Footer from '@/components/Foter';
+import Features from '@/components/Features';
+import AboutSection from '@/components/AboutSection';
+
 
 export default function Home() {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -76,7 +79,19 @@ export default function Home() {
     </div>
     
     <AdditionalInfo />
-    <Last />
+    <h2 className="mt-40 text-3xl font-bold mb-8 text-black text-center">Discover Study Together</h2>
+
+    <Features/>
+     {/* Title and subtitle */}
+     <div className=" mt-40 section-header text-center mb-8" >
+        <h2 className="text-4xl font-bold mb-4 text-black">
+          Find your community. Set Goals. <br/>Achieve Them. Get rewarded.
+        </h2>
+      </div>
+    <AboutSection/>
+
+    <Last /> 
+   
     <Footer />
     
     </>
