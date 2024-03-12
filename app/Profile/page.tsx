@@ -1,4 +1,5 @@
-import Card from "@/components/Cards";
+
+import Card from "@/components/Card";
 import SideBar from "@/components/SideBar";
 import Head from "next/head";
 
