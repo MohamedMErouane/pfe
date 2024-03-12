@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
-import { FaPause, FaPlay, FaSyncAlt, FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { FaPause, FaPlay, FaSyncAlt, FaArrowUp, FaArrowDown, FaPlus, FaMinus } from 'react-icons/fa';
 
 const PomodoroApp = () => {
   const [sessionLength, setSessionLength] = useState(25);
@@ -56,37 +56,37 @@ const PomodoroApp = () => {
   return (
     <div>
       {!showSmallPomodoro ? (
-        <div className="container mx-auto p-2 bg-transparent rounded-md shadow-md text-black text-sm">
+        <div className="container mx-auto p-2 bg-transparent rounded-md shadow-md text-white font-bold text-sm">
           <h1 className="text-lg font-semibold text-center mb-2">Pomodoro Timer</h1>
           <div className="flex justify-around items-center mb-2">
             <div>
               <p>Session Length: {sessionLength} minutes</p>
               <div className="flex justify-center items-center">
-                <button onClick={() => setSessionLength(sessionLength + 1)} className="p-1 border rounded-full">+</button>
-                <button onClick={() => setSessionLength(Math.max(1, sessionLength - 1))} className="p-1 border rounded-full" disabled={sessionLength === 1}>-</button>
+                <button onClick={() => setSessionLength(sessionLength + 1)} className="p-1 border rounded-full text-white"><FaPlus /></button>
+                <button onClick={() => setSessionLength(Math.max(1, sessionLength - 1))} className="p-1 border rounded-full text-white" disabled={sessionLength === 1}><FaMinus /></button>
               </div>
             </div>
             <div>
               <p>Break Length: {breakLength} minutes</p>
               <div className="flex justify-center items-center">
-                <button onClick={() => setBreakLength(breakLength + 1)} className="p-1 border rounded-full">+</button>
-                <button onClick={() => setBreakLength(Math.max(1, breakLength - 1))} className="p-1 border rounded-full" disabled={breakLength === 1}>-</button>
+                <button onClick={() => setBreakLength(breakLength + 1)} className="p-1 border rounded-full text-white"><FaPlus /></button>
+                <button onClick={() => setBreakLength(Math.max(1, breakLength - 1))} className="p-1 border rounded-full text-white" disabled={breakLength === 1}><FaMinus /></button>
               </div>
             </div>
           </div>
           <div className="text-center">
             <p>{isSession ? 'Work Session' : 'Break Session'}</p>
-            <p className="text-4xl" style={{ color: 'black' }}>{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</p>
+            <p className="text-4xl">{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</p>
             {isRunning ? (
-              <button onClick={pauseTimer} className="mt-2 bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-md"><FaPause /> </button>
+              <button onClick={pauseTimer} className="mt-2 bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-md"><FaPause /></button>
             ) : (
-              <button onClick={startTimer} className="mt-2 bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded-md"><FaPlay /> </button>
+              <button onClick={startTimer} className="mt-2 bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded-md"><FaPlay /></button>
             )}
-            <button onClick={resetTimer} className="mt-2 bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded-md ml-1"><FaSyncAlt /> </button>
+            <button onClick={resetTimer} className="mt-2 bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded-md ml-1"><FaSyncAlt /></button>
           </div>
         </div>
       ) : (
-        <div className="container mx-auto p-2 bg-transparent rounded-md shadow-md text-black text-sm mt-2">
+        <div className="container mx-auto p-2 bg-transparent rounded-md shadow-md text-white font-bold text-sm mt-2">
           <p className="text-center">{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}</p>
           {isRunning ? (
             <button onClick={pauseTimer} className="mt-2 bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded-md"><FaPause /></button>
@@ -96,7 +96,7 @@ const PomodoroApp = () => {
           <button onClick={resetTimer} className="mt-2 bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded-md ml-1"><FaSyncAlt /></button>
         </div>
       )}
-      <button onClick={togglePomodoroSize} className="mt-2 bg-transparent hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded-full inline-flex items-center">
+      <button onClick={togglePomodoroSize} className="mt-2 bg-transparent hover:bg-gray-300 text-red-600 font-semibold py-2 px-4 border border-gray-400 rounded-full inline-flex items-center">
         {showSmallPomodoro ? <FaArrowUp className="mr-2" /> : <FaArrowDown className="mr-2" />}
       </button>
     </div>

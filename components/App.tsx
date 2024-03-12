@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRightIcon, ArchiveBoxIcon, Battery0Icon, BellIcon } from '@heroicons/react/24/outline';
 import PomodoroApp from './Pomodoro'; // Check the path to PomodoroApp component
 import Video from './Video'; // Check the path to Video component
-import BackgroundImage from '../public/th7.jpeg'; // Import the background image
+import BackgroundImage from '../public/th8.jpg'; // Import the background image
 import Image from 'next/image';
 
 const App = () => {
@@ -44,25 +44,25 @@ const App = () => {
   alt="Background"
   layout="fill"
   objectFit="cover"
-  quality={100} // Set image quality to 100 for better clarity
-  className="brightness-75" // Adjust brightness as needed
+  quality={100} 
+  className="brightness-75" 
 />
 
 
       <div className="w-1/4 h-full flex flex-col justify-between z-10">
         {/* Pomodoro Component */}
-        <div className="h-1/2 p-3 flex items-center justify-center bg-gray-800 bg-opacity-75">
+        <div className="h-1/2 p-3 flex items-center justify-center  ">
           <PomodoroApp />
         </div>
 
-        {/* Your camera stream */}
-        <div className="h-1/2 p-3 flex items-center justify-center bg-gray-800 bg-opacity-75 ">
+        {/* My camera stream */}
+        <div className="h-1/2 p-3 flex items-center justify-center w-52 ml-10 mt-40 ">
           <Video />
         </div>
       </div>
 
       <div className="flex-1 h-full flex flex-col relative z-10">
-        <div className="h-16 flex space-x-2 items-center justify-end pr-3 bg-gray-800 bg-opacity-75">
+        <div className="h-16 flex space-x-2 items-center justify-end pr-3 ">
           {tabs.map(tab => (
             <div className={`p-2 rounded-md ${selectedTab === tab.id ? 'bg-gray-600' : ''}`} key={tab.id} onClick={() => setSelectedTab(tab.id)}>
               {tab.icon}
@@ -70,9 +70,8 @@ const App = () => {
           ))}
         </div>
 
-        {/* Placeholder for other users' streams */}
-        <div className="flex-1 flex items-center justify-center bg-gray-800 bg-opacity-75">
-          {/* Your Video Component */}
+        <div className="flex-1 flex items-center justify-center ">
+          {/* My Video Component */}
           <div className="p-2 flex justify-center w-full mt-50">
             <Video />
             <Video />
