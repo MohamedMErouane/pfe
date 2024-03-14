@@ -328,3 +328,84 @@
   border-radius: 200px;
   transform: translate(90%,165%);
 }
+/* ChartComponent */
+.title {
+  color: #c56161;
+  text-align: center; 
+  margin-bottom: 20px; 
+  font-size: 3.2rem;
+}
+/* LeaderboardPage.module.css */
+.container4 {
+  margin: 20px;
+  background-image: url(../public/th8.jpg);
+}
+
+.heading {
+  color: rgb(194, 88, 185);
+  font-size: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px;
+}
+
+.input {
+  padding: 8px;
+  margin-bottom: 10px;
+  color: #000;
+}
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  color: black;
+}
+
+.table th {
+  background-color: #9e1a1a;
+  font-weight: bold;
+  text-align: left;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f7f3f3;
+  color: #000;
+}
+
+.table tbody tr:hover {
+  background-color: #88db93;
+}
+
+.inputContainer {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input {
+  padding: 10px 35px 10px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 300px;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(-3190%,-1260%);
+  cursor: pointer;
+  color: #000;
+}
+

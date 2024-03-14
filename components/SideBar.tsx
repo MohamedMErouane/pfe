@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { Disclosure } from "@headlessui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiVideoOn } from "react-icons/ci";
+import { PiStudentBold } from "react-icons/pi";
 import { CgProfile } from "react-icons/cg";
 import { MdDashboard,  MdSettings, MdExitToApp } from "react-icons/md";
+import LeaderboardOutlinedIcon from '@mui/icons-material/LeaderboardOutlined';
 import { FaComments } from "react-icons/fa";
 import { BiMessageSquareDots } from "react-icons/bi";
 import { IoMdSchool } from "react-icons/io";
@@ -33,7 +35,9 @@ const SideBar = () => {
               <NavItem icon={<CiVideoOn  />} label="Video Rooms" href="/Video" />
               <NavItem icon={<FaComments />} label="Chat Rooms" href="/Chat" />
               <NavItem icon={<BiMessageSquareDots />} label="Study Goals" href="/Todo" />
-              <NavItem icon={<MdSettings />} label="Settings" href="/settings" />
+              <NavItem icon={<LeaderboardOutlinedIcon />} label="StudyStates" href="/StudyStates" />
+              <NavItem icon={< PiStudentBold  />} label="leadearboard" href="/leaderboard" />
+
               <NavItem icon={<MdExitToApp />} label="Logout" />
             </Disclosure.Panel>
           </>
