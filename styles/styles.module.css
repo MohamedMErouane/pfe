@@ -409,3 +409,54 @@
   color: #000;
 }
 
+/* chat page */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.title {
+  color: black;
+}
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.messageContainer {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.message {
+  color: black;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
