@@ -42,7 +42,7 @@ const ChatPage = () => {
 
   const simulateOtherUserMessage = () => {
     const randomMessage = 'Watakidayr!';
-    setMessages([{ text: randomMessage, sender: 'Ismail' }, ...messages]);
+    setMessages([...messages, { text: randomMessage, sender: 'Ismail' }]);
   };
 
   const handleImageClick = (img: string | null) => {
@@ -64,8 +64,8 @@ const ChatPage = () => {
       <div className="flex-1 h-screen flex flex-col justify-center items-center bg-gray-900">
         <div className="bg-gray-800 rounded-lg p-8 w-full max-w-screen-md flex flex-col flex-grow mx-auto">
           <h1 className="text-white text-3xl mb-4">Chat App</h1>
-          <div className="flex-1 overflow-y-auto" ref={chatRef} style={{ maxHeight: '70vh' }}>
-            {[...messages].reverse().map((message, index) => (
+          <div className="flex-1 overflow-y-auto" ref={chatRef} style={{ maxHeight: '70vh', scrollbarWidth: 'thin', scrollbarColor: 'transparent transparent' }}>
+            {messages.map((message, index) => (
               <div key={index} className={`flex ${message.sender === 'Me' ? 'justify-end' : 'justify-start'} mb-4`}>
                 <div className={`flex items-center space-x-2 ${message.sender === 'Me' ? 'flex-row-reverse' : ''}`}>
                   {message.sender !== 'Me' && (
@@ -80,10 +80,10 @@ const ChatPage = () => {
                   )}
                   {message.image && (
                     <img
-                      src={URL.createObjectURL(message.image)}
+                      src={message.image ? URL.createObjectURL(message.image) : ''}
                       alt="Sent"
                       className="rounded-lg max-w-xs cursor-pointer"
-                      onClick={() => handleImageClick(URL.createObjectURL(message.image))}
+                      onClick={() => handleImageClick(message.image ? URL.createObjectURL(message.image) : null)}
                     />
                   )}
                 </div>
