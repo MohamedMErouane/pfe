@@ -65,7 +65,7 @@ const ChatPage = () => {
         <div className="bg-gray-800 rounded-lg p-8 w-full max-w-screen-md flex flex-col flex-grow mx-auto">
           <h1 className="text-white text-3xl mb-4">Chat App</h1>
           <div className="flex-1 overflow-y-auto" ref={chatRef} style={{ maxHeight: '70vh' }}>
-            {messages.map((message, index) => (
+            {[...messages].reverse().map((message, index) => (
               <div key={index} className={`flex ${message.sender === 'Me' ? 'justify-end' : 'justify-start'} mb-4`}>
                 <div className={`flex items-center space-x-2 ${message.sender === 'Me' ? 'flex-row-reverse' : ''}`}>
                   {message.sender !== 'Me' && (
@@ -88,7 +88,7 @@ const ChatPage = () => {
                   )}
                 </div>
               </div>
-            )).reverse()} {/* Reverse the order of messages */}
+            ))}
           </div>
           {displayedImage && (
             <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">

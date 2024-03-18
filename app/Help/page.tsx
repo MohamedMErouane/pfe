@@ -1,17 +1,14 @@
 "use client"
-import App from "@/components/App";
-import SideBar from "@/components/SideBar";
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import MainApp from '../../components/App'; 
 
-const Home: React.FC = () => {
+const App: React.FC = () => {
   return (
-    <div className="flex">
-     
-      
-        <App />
-      
-    </div>
+    <BrowserRouter>
+      <MainApp /> 
+    </BrowserRouter>
   );
 };
 
-export default Home;
+export default App;
